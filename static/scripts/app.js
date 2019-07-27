@@ -86,6 +86,6 @@ let lastImageIndex = -1;
 let grayscale = false;
 
 // stfu
-img1.parentElement.addEventListener('animationend', e => setTimeout(next, audioMusic.currentTime < 4.0 ? 400 : randomInt(150, 250)));
-img2.parentElement.addEventListener('animationend', e => setTimeout(next, audioMusic.currentTime < 4.0 ? 400 : randomInt(150, 250))); 
+img1.parentElement.addEventListener('animationend', e => setTimeout(next, audioMusic.currentTime < 4.0 ? 400 : randomInt(150, 350)));
+img2.parentElement.addEventListener('animationend', e => setTimeout(next, audioMusic.currentTime < 4.0 ? 400 : randomInt(150, 350))); 
 window.addEventListener('load', e => setTimeout(next, 100));
