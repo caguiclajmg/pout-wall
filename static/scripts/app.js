@@ -1,6 +1,9 @@
 const img1 = document.getElementById('img1');
 const img2 = document.getElementById('img2');
 const audioMusic = document.getElementById('audioMusic');
+audioMusic.play();
+audioMusic.volume = 1.0;
+audioMusic.muted = false;
 
 const btnGrayscale = document.getElementById('btnGrayscale');
 btnGrayscale.addEventListener('click', e => {
@@ -35,6 +38,29 @@ const animations = [
     {name: 'rotate_ccw', min_time: 0.1, max_time: 0.15},
 ];
 
+function randomInt(min, max) {
+    return min + Math.floor(Math.random() * (max - min));
+}
+
+function next() {
+    activeImageElement.parentElement.style.display = 'none';
+    activeImageElement = (activeImageElement === img1 ? img2 : img1);
+    activeImageElement.parentElement.style.display = 'block';
+
+    const containerElement = activeImageElement.parentElement;
+    const animationIndex = randomInt(0, animations.length - 1);
+    const animation = animations[animationIndex];
+    const animationDuration = animation.min_time + (Math.random() * (animation.max_time - animation.min_time));
+    containerElement.style.animation = `${animation.name} ${animationDuration}s 1`;
+    containerElement.style.animationTimingFunction = 'ease-in';
+
+    let imageIndex = lastImageIndex;
+    while(imageIndex === lastImageIndex) imageIndex = randomInt(0, images.length - 1);
+    lastImageIndex = imageIndex;
+    activeImageElement.src = images[imageIndex].src;
+    activeImageElement.style.filter = grayscale ? 'grayscale(100%)' : '';
+}
+
 const imagesCount = 40;
 const images = [];
 for(let i = 0; i < imagesCount; ++i) {
@@ -46,30 +72,6 @@ let activeImageElement = img2;
 let lastImageIndex = -1;
 let grayscale = false;
 
-function next() {
-    activeImageElement.parentElement.style.display = 'none';
-    activeImageElement = (activeImageElement === img1 ? img2 : img1);
-    activeImageElement.parentElement.style.display = 'block';
-
-    const containerElement = activeImageElement.parentElement;
-    const animationIndex = Math.floor(Math.random() * animations.length);
-    const animation = animations[animationIndex];
-    const animationDuration = animation.min_time + (Math.random() * (animation.max_time - animation.min_time));
-    containerElement.style.animation = `${animation.name} ${animationDuration}s 1`;
-    containerElement.style.animationTimingFunction = 'ease-in';
-
-    let imageIndex = lastImageIndex;
-    while(imageIndex === lastImageIndex) imageIndex = Math.floor(Math.random() * images.length);
-    lastImageIndex = imageIndex;
-    activeImageElement.src = images[imageIndex].src;
-    activeImageElement.style.filter = grayscale ? 'grayscale(100%)' : '';
-}
-
-img1.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(50, 300)));
-img2.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(50, 300))); 
-
-setTimeout(next, 4700);
-
-function randomInt(min, max) {
-    return min + Math.floor(Math.random() * (max - min));
-}
+img1.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(100, 300)));
+img2.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(100, 300))); 
+window.addEventListener('load', e => setTimeout(next, 4700));
