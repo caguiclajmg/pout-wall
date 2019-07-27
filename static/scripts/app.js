@@ -72,6 +72,6 @@ let activeImageElement = img2;
 let lastImageIndex = -1;
 let grayscale = false;
 
-img1.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(100, 300)));
-img2.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(100, 300))); 
+img1.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(150, 400)));
+img2.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(150, 400))); 
 window.addEventListener('load', e => setTimeout(next, 4700));
