@@ -24,8 +24,8 @@ btnMute.addEventListener('click', e => {
 });
 
 const animations = [
-    {name: 'zoom-in', min_time: 0.1, max_time: 0.2},
-    {name: 'zoom-out', min_time: 0.1, max_time: 0.2},
+    {name: 'zoom-in', min_time: 0.1, max_time: 0.15},
+    {name: 'zoom-out', min_time: 0.1, max_time: 0.15},
     {name: 'slide-in_left', min_time: 0.15, max_time: 0.2},
     {name: 'slide-in_top', min_time: 0.15, max_time: 0.2},
     {name: 'slide-in_bottom', min_time: 0.15, max_time: 0.2},
@@ -48,7 +48,20 @@ function next() {
     activeImageElement.parentElement.style.display = 'block';
 
     const containerElement = activeImageElement.parentElement;
-    const animationIndex = randomInt(0, animations.length - 1);
+    let animationIndex = randomInt(0, animations.length - 1);
+    // Quick hack for weighting the randomness of the animations
+    let rnd = Math.random();
+    switch(true) {
+        case rnd <= 0.33 || audioMusic.currentTime < 4.0: // stfu
+            animationIndex = randomInt(0, 1);
+            break;
+        case rnd <= 0.66:
+            animationIndex = randomInt(2, 9);
+            break;
+        default:
+            animationIndex = randomInt(10, 11);
+    }
+
     const animation = animations[animationIndex];
     const animationDuration = animation.min_time + (Math.random() * (animation.max_time - animation.min_time));
     containerElement.style.animation = `${animation.name} ${animationDuration}s 1`;
@@ -72,6 +85,7 @@ let activeImageElement = img2;
 let lastImageIndex = -1;
 let grayscale = false;
 
-img1.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(150, 400)));
-img2.parentElement.addEventListener('animationend', e => setTimeout(next, randomInt(150, 400))); 
-window.addEventListener('load', e => setTimeout(next, 4700));
+// stfu
+img1.parentElement.addEventListener('animationend', e => setTimeout(next, audioMusic.currentTime < 4.0 ? 400 : randomInt(150, 250)));
+img2.parentElement.addEventListener('animationend', e => setTimeout(next, audioMusic.currentTime < 4.0 ? 400 : randomInt(150, 250))); 
+window.addEventListener('load', e => setTimeout(next, 100));
