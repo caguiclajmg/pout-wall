@@ -52,10 +52,10 @@ function next() {
     // Quick hack for weighting the randomness of the animations
     let rnd = Math.random();
     switch(true) {
-        case rnd <= 0.33 || audioMusic.currentTime < 4.0: // stfu
-            animationIndex = audioMusic.currentTime < 4 ? 0 : randomInt(0, 1);
+        case rnd <= 0.2 || audioMusic.currentTime < 4.0: // stfu
+            animationIndex = audioMusic.currentTime < 4.0 ? 0.0 : randomInt(0, 1);
             break;
-        case rnd <= 0.66:
+        case rnd <= 0.8:
             animationIndex = randomInt(2, 9);
             break;
         default:
@@ -63,7 +63,7 @@ function next() {
     }
 
     const animation = animations[animationIndex];
-    const animationDuration = animation.min_time + (Math.random() * (animation.max_time - animation.min_time));
+    const animationDuration = audioMusic.currentTime < 4.0 ? 0.1 : animation.min_time + (Math.random() * (animation.max_time - animation.min_time));
     containerElement.style.animation = `${animation.name} ${animationDuration}s 1`;
     containerElement.style.animationTimingFunction = 'ease-in';
 
