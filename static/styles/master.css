@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@keyframes zoom-in {
+    0% { transform: scale(0, 0); }
+    100% { transform: scale(1, 1); }
+}
+@keyframes zoom-out {
+    0% { transform: scale(10, 10); }
+    100% { transform: scale(1, 1); }
+}
+
+@keyframes slide-in_left {
+    0% { transform: translateX(-100%); }
+    95% { transform: translateX(3%); }
+    100% { transform: translateX(0%); }
+}
+
+@keyframes slide-in_top {
+    0% { transform: translateY(-100%); }
+    95% { transform: translateY(3%); }
+    100% { transform: translateY(0%); }
+}
+
+@keyframes slide-in_bottom {
+    0% { transform: translateY(100%); }
+    95% { transform: translateY(-3%); }
+    100% { transform: translateY(0%); }
+}
+
+@keyframes slide-in_right {
+    0% { transform: translateX(100%); }
+    95% { transform: translateX(-3%); }
+    100% { transform: translateX(0%); }
+}
+
+@keyframes slide-in_topleft {
+    0% { transform: translate(-100%, -100%); }
+    95% { transform: translate(3%, 3%); }
+    100% { transform: translate(0%, 0%); }
+}
+
+@keyframes slide-in_bottomleft {
+    0% { transform: translate(-100%, 100%); }
+    95% { transform: translate(3%, -3%); }
+    100% { transform: translate(0%, 0%); }
+}
+
+@keyframes slide-in_topright {
+    0% { transform: translate(100%, -100%); }
+    95% { transform: translate(-3%, 3%); }
+    100% { transform: translate(0%, 0%); }
+}
+
+@keyframes slide-in_bottomright {
+    0% { transform: translate(100%, 100%); }
+    95% { transform: translate(-3%, -3%); }
+    100% { transform: translate(0%, 0%); }
+}
+
+@keyframes rotate_cw {
+    0% { transform: rotate(0deg); }
+    95% { transform: rotate(370deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotate_ccw {
+    0% { transform: rotate(0deg); }
+    95% { transform: rotate(-370deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+a {
+    text-decoration: none;
+}
+
+.overlay-container {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    overflow: hidden;
+}
+
+.bar-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+@media all and (orientation:portrait) {
+    .bar-overlay {
+        width: 100%;
+        height: 12.5%;
+        position: absolute;
+        background: #000;
+    }    
+}
+@media all and (orientation:landscape) {
+    .bar-overlay {
+        width: 12.5%;
+        height: 100%;
+        position: absolute;
+        background: #000;
+    }
+}
+
+.left {
+    top: 0;
+}
+
+.right {
+    right: 0;
+}
+
+.controls-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    padding: 0.25em 0.25em 0em 0.25em;
+    cursor: pointer;
+    background: #000;
+}
+
+.controls-icon {
+    font-size: 2em;
+    user-select: none;
+    color: #fff;
+}
+
+.controls-icon:hover {
+    color: #aaa;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    overflow: hidden;
+    background: #000;
+}
+
+.img-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #000;
+}
+
+.img-view {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}

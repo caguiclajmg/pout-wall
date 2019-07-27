@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>You Pouted In The Wrong Dimmadome</title>
+
+        <link rel="stylesheet" href="static/styles/master.css">
+    </head>
+    <body>
+        <div class="overlay-container">
+            <div class="controls-container">
+                <i id="btnGrayscale" class="material-icons controls-icon">invert_colors</i>
+                <i id="btnMute" class="material-icons controls-icon">volume_off</i>
+                <a href="https://github.com/caguiclajmg/pout-wall" class="material-icons controls-icon">public</a>
+            </div>
+            <div class="bar-container">
+                <div class="bar-overlay left"></div>
+                <div class="bar-overlay right"></div>
+            </div>
+        </div>
+
+        <div id="root">
+            <div class="img-container">
+                <img id="img1" class="img-view">
+            </div>
+            <div class="img-container">
+                <img id="img2" class="img-view">        
+            </div>
+        </div>
+
+        <audio id="audioMusic" volume="1.0" autoplay muted loop>
+            <source src="static/audio/YouRepostedInTheWrongDimmadome.ogg" type="audio/ogg">
+            <source src="static/audio/YouRepostedInTheWrongDimmadome.wav" type="audio/wav">
+        </audio>
+
+        <script type="text/javascript" src="static/scripts/app.js"></script>
+    </body>
+</html>
