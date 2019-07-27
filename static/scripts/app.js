@@ -39,7 +39,7 @@ const animations = [
 ];
 
 function randomInt(min, max) {
-    return min + Math.floor(Math.random() * (max - min));
+    return min + Math.ceil(Math.random() * (max - min));
 }
 
 function next() {
@@ -53,7 +53,7 @@ function next() {
     let rnd = Math.random();
     switch(true) {
         case rnd <= 0.33 || audioMusic.currentTime < 4.0: // stfu
-            animationIndex = randomInt(0, 1);
+            animationIndex = audioMusic.currentTime < 4 ? 0 : randomInt(0, 1);
             break;
         case rnd <= 0.66:
             animationIndex = randomInt(2, 9);
